@@ -1,0 +1,15 @@
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({"Cust_code":['Name1', 'Name1', 'Name2', 'Name2'], "order_id":['id1', 'id2', 'id1', 'id2'], "Value": [20,100,300,400]})
+
+df_agg = df.groupby("Cust_code")[["order_id", "Value"]].aggregate({"Value":["min", "max"], "order_id":"count"})
+
+df_agg.reset_index()
+
+df_agg.columns = ["_".join(col) for col in df_agg.columns]
+
+df_agg
+
+
+
